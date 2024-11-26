@@ -22,7 +22,7 @@ We can say that Service classes are our Use Case classes in our domain layer.
 So we place Service classes in a domain package. So we will have the following Class:
 
 ```java
-package domain; 
+package domain;
 
 @Service
 public class AuthenticationUseCaseService {
@@ -47,7 +47,7 @@ public @interface UseCase {
 Now we have the following class:
 
 ```java
-package domain; 
+package domain;
 
 @UseCase
 public class AuthenticationUseCaseService {
@@ -64,6 +64,8 @@ So we shall turn @UseCase a @Bean component.
 We will do this in the application layer.
 
 ```java
+package application;
+
 @Configuration
 public class ApplicationConfiguration {
 
@@ -86,4 +88,10 @@ public class ApplicationConfiguration {
 
 This class will look for all classes annotated with @UseCase and register them as Bean component.
 
-By doing this we take advantage of the Spring framework in order to use dependency injection for @UseCase classes making the domain layer totally independent of outer layers.
+*By doing this we take advantage of the Spring framework in order to use dependency injection for @UseCase classes making the domain layer totally independent of outer layers.*
+
+> Note :
+> We can also create a Repository annotation in the domain layer (do not confound with Spring @Repository) to identify domain Repository classes.
+> The same for domain Entity classes.
+> 
+> Maybe call them as @DomainRepository and @DomainEntity to differentiate from Spring annotations.
