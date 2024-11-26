@@ -67,19 +67,15 @@ We will do this in the application layer.
 package application;
 
 @Configuration
-public class ApplicationConfiguration {
+public class BeanDefinitionRegistryConfig implements BeanDefinitionRegistryPostProcessor {
 
-    @Autowired
-    private GenericApplicationContext context;
-
-    @PostConstruct
-    public void registerAnnotatedClassesAsBeans() {
+    @Override
+    public void postProcessBeanDefinitionRegistry(BeanDefinitionRegistry registry) throws BeansException {
         ClassPathScanningCandidateComponentProvider scanner = new ClassPathScanningCandidateComponentProvider(false);
-
         scanner.addIncludeFilter(new AnnotationTypeFilter(UseCase.class));
 
         for (BeanDefinition bd : scanner.findCandidateComponents("domain")) {
-            context.registerBeanDefinition(bd.getBeanClassName(), bd);
+            registry.registerBeanDefinition(bd.getBeanClassName(), bd);
         }
     }
 
