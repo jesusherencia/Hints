@@ -37,6 +37,7 @@ To overcome this we replace @Service by the UseCase annotation that we create in
 
 ```java
 package domain;
+
 @Target(ElementType.TYPE)
 @Retention(RetentionPolicy.RUNTIME)
 public @interface UseCase {
@@ -71,8 +72,7 @@ public class ApplicationConfiguration {
 
     @PostConstruct
     public void registerAnnotatedClassesAsBeans() {
-        ClassPathScanningCandidateComponentProvider scanner =
-                new ClassPathScanningCandidateComponentProvider(false);
+        ClassPathScanningCandidateComponentProvider scanner = new ClassPathScanningCandidateComponentProvider(false);
 
         scanner.addIncludeFilter(new AnnotationTypeFilter(UseCase.class));
 
