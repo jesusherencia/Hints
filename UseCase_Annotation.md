@@ -1,7 +1,8 @@
 # UseCase Annotation (Clean Architecture)
 
 When developing a Java Application the common chosen framework is SpringBoot.
-A common structure of classes is used in this case : 
+A common structure of classes is used in this case :
+
     Controller -> Service -> Repository
 
 We annotate those classes with the corresponding Spring annotations :
@@ -14,6 +15,7 @@ Well, in that case we isolate our domain layer with should be mainly composed of
 - Use Case
 - Entity
 - Repository
+
 And no depedencies to external layers should exist.
 
 We can say that Service classes are our Use Case classes in our domain layer.
@@ -75,7 +77,6 @@ public class ApplicationConfiguration {
         scanner.addIncludeFilter(new AnnotationTypeFilter(UseCase.class));
 
         for (BeanDefinition bd : scanner.findCandidateComponents("domain")) {
-            System.out.println(bd.getBeanClassName());
             context.registerBeanDefinition(bd.getBeanClassName(), bd);
         }
     }
