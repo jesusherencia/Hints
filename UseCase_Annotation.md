@@ -1,5 +1,7 @@
 # UseCase Annotation (Clean Architecture)
 
+## Context
+
 When developing a Java Application the common chosen framework is SpringBoot.
 A common structure of classes is used in this case :
 
@@ -34,6 +36,9 @@ public class AuthenticationUseCaseService {
 ```
 
 But @Service comes from Spring, so we have a dependency from domain layer to external layer. Not good.
+
+## Proposal
+
 To overcome this we replace @Service by the UseCase annotation that we create in the domain package.
 
 ```java
@@ -64,8 +69,20 @@ But AuthenticationUseCaseService won't be treated as a Bean in the Spring framew
 So we shall turn @UseCase into a @Bean component.
 We will do this in the application layer, where spring framework resides.
 
+### Solution 1:
+
+In a @Configuration class implements BeanDefinitionRegistryPostProcessor and override postProcessBeanDefinitionRegistry method.
+
 ```java
 package application;
+
+import org.springframework.beans.BeansException;
+import org.springframework.beans.factory.config.BeanDefinition;
+import org.springframework.beans.factory.support.BeanDefinitionRegistry;
+import org.springframework.beans.factory.support.BeanDefinitionRegistryPostProcessor;
+import org.springframework.context.annotation.ClassPathScanningCandidateComponentProvider;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.core.type.filter.AnnotationTypeFilter;
 
 @Configuration
 public class BeanDefinitionRegistryConfig implements BeanDefinitionRegistryPostProcessor {
@@ -83,7 +100,26 @@ public class BeanDefinitionRegistryConfig implements BeanDefinitionRegistryPostP
 }
 ```
 
-This class will look for all classes annotated with @UseCase and register them as Bean component.
+### Solution 2:
+
+In a Configuration class add the ComponentScan annotation defining a Filter by annotation.
+
+```java
+package application;
+
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.FilterType;
+
+@Configuration
+@ComponentScan(includeFilters = @ComponentScan.Filter(type = FilterType.ANNOTATION, classes = {UseCase.class}))
+public class FilterTypeComponentScan {
+}
+```
+
+### Summary
+
+Those two classes will look for all classes annotated with @UseCase and register them as Bean components.
 
 *By doing this we take advantage of the Spring framework in order to use dependency injection for @UseCase classes making the domain layer totally independent of outer layers.*
 
