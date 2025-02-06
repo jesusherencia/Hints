@@ -23,6 +23,7 @@ So we place Service classes in a domain package. So we will have the following C
 
 ```java
 package domain;
+import org.springframework.stereotype.Service;
 
 @Service
 public class AuthenticationUseCaseService {
@@ -32,7 +33,7 @@ public class AuthenticationUseCaseService {
 }
 ```
 
-But @Service comes from Spring, so we have a dependency from domain layer to external layer.
+But @Service comes from Spring, so we have a dependency from domain layer to external layer. Not good.
 To overcome this we replace @Service by the UseCase annotation that we create in the domain package.
 
 ```java
@@ -60,8 +61,8 @@ public class AuthenticationUseCaseService {
 Great! No dependencecies from domain to outer layers.
 But AuthenticationUseCaseService won't be treated as a Bean in the Spring framework and no dependency injection could be done over this class.
 
-So we shall turn @UseCase a @Bean component.
-We will do this in the application layer.
+So we shall turn @UseCase into a @Bean component.
+We will do this in the application layer, where spring framework resides.
 
 ```java
 package application;
