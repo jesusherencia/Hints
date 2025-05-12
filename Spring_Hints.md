@@ -12,7 +12,7 @@ import org.springframework.context.event.EventListener;
 ...
   @EventListener(ApplicationReadyEvent.class)
   public void doSomethingAfterStartup() {
-    System.out.println("hello world, I have just started up");
+    System.out.println("Hello world, I have just started up");
   }
 ...
 ```
@@ -28,7 +28,7 @@ import org.springframework.stereotype.Component;
 public class ApplicationStartup implements ApplicationListener<ApplicationReadyEvent> {
     @Override
     public void onApplicationEvent(ApplicationReadyEvent event) {
-        System.out.println("hello world, I have just started up");
+        System.out.println("Hello world, I have just started up");
     }
 }
 ```
