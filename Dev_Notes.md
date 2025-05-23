@@ -51,3 +51,30 @@ Notes:
 Examples 'module-path':
 - webapp (webapp.py)
 - web.app (web/app.py)
+
+## In Python, to create package namespaces in order to be used as imports
+
+Having a project folder structure:
+
+```
+project_folder
+├── com/package1
+│   ├── subcpackage1
+│       ├── module1.py
+│   ├── subcpackage2
+│       ├── module2.py
+├── com/package2
+│   ├── main.py
+```
+
+And adding package folders to PYTHONPATH environment variable
+
+> export PYTHONPATH=$PYTHONPATH:<project_folder>/com/package1:<project_folder>/com/package2
+
+We can import subpackages from any other module as they are already present in path.
+
+```python
+import subpackage1.module1
+from subpackage2 import module2
+...
+```
