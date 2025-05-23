@@ -43,3 +43,11 @@ linux: $(pwd)*
 -p : link a host port to a container one  
 Notes:  
 -v & -p can be used more than once within the same command  
+
+## In Python, in order to run a module(sub-module) from app root folder while using absolute imports in module files, use "-m' option
+
+> python3 -m <module_path>
+
+Examples 'module-path':
+- webapp (webapp.py)
+- web.app (web/app.py)
