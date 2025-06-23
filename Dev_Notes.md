@@ -78,3 +78,17 @@ import subpackage1.module1
 from subpackage2 import module2
 ...
 ```
+
+## In Angular, update input value using DOM and update model
+
+If we update an input by using DOM (input.value = 'test'), the angular would not listen and model would not be updated.
+In order to trigger the model we need to dispatch an event.
+
+```javascript
+updateInput(inputElement: HTMLInputElement) {
+  inputElement.value = 'Updated!';
+  // Dispatch input event to trigger Angular's ngModel update
+  inputElement.dispatchEvent(new Event('input'));
+}
+```
+
