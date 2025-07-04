@@ -124,7 +124,7 @@ Those two classes will look for all classes annotated with @UseCase and register
 *By doing this we take advantage of the Spring framework in order to use dependency injection for @UseCase classes making the domain layer totally independent of outer layers.*
 
 > Note :
-> We can also create a Repository annotation in the domain layer (do not confound with Spring @Repository) to identify domain Repository classes.
+> We can also create a Repository annotation in the domain layer (do not mix it up with Spring @Repository) to identify domain Repository classes.
 > The same for domain Entity classes.
 > 
 > Maybe call them as @DomainRepository and @DomainEntity to differentiate from Spring annotations.
