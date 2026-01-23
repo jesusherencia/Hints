@@ -8,6 +8,20 @@ Instrumentation in Java refers to the ability to modify, enhance, and inspect th
 It provides a dynamic mechanism to transform the bytecode of classes as they are loaded into the Java Virtual Machine (JVM). 
 By utilizing the Instrumentation API, developers can intercept, modify, and analyze the bytecode to add functionality or gain insights into application behavior.
 
+## For dependency analysis we can use jdeps:
+
+Show command options:
+
+> jdeps
+
+Example (generate package and classes dependencies):
+
+> jdeps --dot-output <dot_path_file> -verbose:class -R --regex '<regex>' <directory or jar file to be examined>
+
+> jdeps --dot-output out/jdeps -verbose:class -R --regex 'com.\test.\..*' .\target\classes\
+
+Then use graphviz (VS Code) to visualize files.
+
 ## When we want to create environment variables in linux through a bash file, we must execute the file with the source command
 
 Ex:
@@ -18,9 +32,12 @@ Ex:
 ## In python, in order to enforce type checking use "typeguard" library
 
 Ex:
-> from typeguard import typechecked
-> @typechecked
->    def method_to_be_type_checked(param1: str, param2: float, param3: Type1):
+```python
+from typeguard import typechecked
+...
+   @typechecked
+   def method_to_be_type_checked(param1: str, param2: float, param3: Type1):
+```
 
 ## Useful Docker commands
 
