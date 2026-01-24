@@ -109,3 +109,21 @@ updateInput(inputElement: HTMLInputElement) {
 }
 ```
 
+## Use a mail dev server
+
+Docker :
+> docker run -d -p 1025:1025 -p 8025:8025 mailhog/mailhog
+
+Docker compose :
+```
+services:
+  mailhog:
+    image: mailhog/mailhog:latest
+    restart: always
+    ports:
+      - 1025:1025
+      - 8025:8025
+```
+
+Windows Powershell test :
+> Send-MailMessage -To “recipient@test.com” -From “sender@test.com” -Subject "Test email" -SmtpServer “localhost” -Port 1025
