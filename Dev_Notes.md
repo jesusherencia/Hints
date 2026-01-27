@@ -61,6 +61,16 @@ linux: $(pwd)*
 Notes:  
 -v & -p can be used more than once within the same command  
 
+## Useful Git commands
+
+To set config values valuable only in a local repository, use --local instead of --global (local by default) :
+
+> git config --local user.email "test@test.com"
+
+> git config --local user.name "name"
+
+The value should not be empty, if empty value no modification is done.
+
 ## In Python, in order to run a module(sub-module) from app root folder while using absolute imports in module files, use "-m' option
 
 > python3 -m <module_path>
