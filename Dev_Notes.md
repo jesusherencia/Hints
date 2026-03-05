@@ -43,33 +43,45 @@ from typeguard import typechecked
 
 - To build an image from a Dockerfile
 
-> docker build -t <image_name> .
+  > docker build -t <image_name> .
 
-Where <image_name> should be replaced by a value.
+  Where <image_name> should be replaced by a value.
 
 - To run a container from an image
 
-> docker run -d --name <container_name> -v <host_dir>:<container_dir> -p <host_port>:<container_port> <image_name>
+  > docker run -d --name <container_name> -v <host_dir>:<container_dir> -p <host_port>:<container_port> <image_name>
 
--d : run in detached mode  
--v : add volume linking a host directory to a container one  
-*To use current directory as a value, os-related specific values are used for <host_dir>:  
-cmd: %cd%  
-powershell: ${PWD}  
-linux: $(pwd)*  
--p : link a host port to a container one  
-Notes:  
--v & -p can be used more than once within the same command  
+  -d : run in detached mode  
+  -v : add volume linking a host directory to a container one  
+  *To use current directory as a value, os-related specific values are used for <host_dir>:  
+  cmd: %cd%  
+  powershell: ${PWD}  
+  linux: $(pwd)*  
+  -p : link a host port to a container one  
+  Notes:  
+  -v & -p can be used more than once within the same command  
 
 ## Useful Git commands
 
-To set config values valuable only in a local repository, use --local instead of --global (local by default) :
+- To set config values valuable only in a local repository, use --local instead of --global (local by default) :
 
-> git config --local user.email "test@test.com"
+  > git config --local user.email "test@test.com"
+  
+  > git config --local user.name "name"
 
-> git config --local user.name "name"
+  The value should not be empty, if empty value no modification is done.
 
-The value should not be empty, if empty value no modification is done.
+- To push a new local branch to remote for the first time (aka: without tracking upstream) :
+
+  > git push --set-upstream origin <remote_branch_path_name>
+
+- To set an alias for a git command :
+
+  > git config --global alias.co checkout
+
+  Ex :
+
+  > git co <branch_name>
 
 ## In Python, in order to run a module(sub-module) from app root folder while using absolute imports in module files, use "-m' option
 
