@@ -32,3 +32,11 @@ public class ApplicationStartup implements ApplicationListener<ApplicationReadyE
     }
 }
 ```
+
+## Using virtual threads in spring mvc:
+
+In order to profit of non-blocking request threads use this config in application configuration file :
+```
+spring.threads.virtual.enabled=true
+```
+Note : It's needed at least Java 21 and SpringBoot 3.2
