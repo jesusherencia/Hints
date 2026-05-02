@@ -149,3 +149,12 @@ services:
 
 Windows Powershell test :
 > Send-MailMessage -To “recipient@test.com” -From “sender@test.com” -Subject "Test email" -SmtpServer “localhost” -Port 1025
+
+## In linux verify CRLF lines
+
+In linux sometimes is necessary to be sure that a file doesn't contains windows CRLF lines, this is important specially for script files:
+To verify if a file contains CRLF, use this commnand:
+> file ./pythonpath.sh
+
+To fix it we can run the following command:
+> sed -i 's/\r//' ./pythonpath.sh
