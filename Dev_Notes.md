@@ -154,7 +154,7 @@ Windows Powershell test :
 
 In linux sometimes is necessary to be sure that a file doesn't contains windows CRLF lines, this is important specially for script files:
 To verify if a file contains CRLF, use this commnand:
-> file ./pythonpath.sh
+   > file <file_path>
 
 To fix it we can run the following command:
-> sed -i 's/\r//' ./pythonpath.sh
+   > sed -i 's/\r//' <file_path>
