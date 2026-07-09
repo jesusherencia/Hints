@@ -83,6 +83,15 @@ from typeguard import typechecked
 
   > git co <branch_name>
 
+- Git rebase onto :
+  Let's say there is a main branch, a feature1 branch and I open a feature2 branch from feature1.
+  Then feature1 is merged onto branch, what I need to do is to rebase feature2 onto master.
+  For that a git rebase --onto is needed.
+
+  > git rebase --onto master feature1
+
+  For this to work the active branch should be feature2, if not we need to add a third argument to the command, in this case we add "feature2".
+
 ## In Python, in order to run a module(sub-module) from app root folder while using absolute imports in module files, use "-m' option
 
 > python3 -m <module_path>
